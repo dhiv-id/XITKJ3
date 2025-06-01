@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>XI TKJ 3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Inter&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #0f172a, #1e293b);
+      color: #f1f5f9;
+      min-height: 100vh;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: #0f172a;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .menu-toggle {
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: #38bdf8;
+    }
+    .logo {
+      height: 40px;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      color: #38bdf8;
+    }
+    nav {
+      display: none;
+      background-color: #1e293b;
+      padding: 1rem;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    nav a {
+      display: block;
+      color: #f8fafc;
+      text-decoration: none;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+    }
+    nav a:hover {
+      background: #334155;
+    }
+    .content {
+      padding: 2rem;
+    }
+    .hidden {
+      display: none;
+    }
+    select {
+      margin-top: 1rem;
+      padding: 0.6rem;
+      border-radius: 6px;
+      border: none;
+      background: #334155;
+      color: #f8fafc;
+      font-size: 1rem;
+    }
+    .schedule {
+      margin-top: 1.5rem;
+      background: #1e293b;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+    .schedule h2 {
+      color: #38bdf8;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    .schedule ul {
+      list-style: none;
+      padding: 0;
+    }
+    .schedule li {
+      padding: 0.7rem 0;
+      border-bottom: 1px dashed #64748b;
+    }
+    .schedule li:last-child {
+      border-bottom: none;
+    }
+    .subject {
+      font-weight: bold;
+      color: #f8fafc;
+    }
+    .time {
+      color: #cbd5e1;
+    }
+
+    @keyframes .fade-in {
+    animation: fadeIn 0.8s ease forwards;
+    opacity: 0;
+    }
+
+
+    @media(min-width: 768px) {
+      nav {
+        display: flex !important;
+        gap: 2rem;
+        justify-content: center;
+      }
+      nav a {
+        margin: 0;
+      }
+      .menu-toggle {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display: flex; align-items: center;">
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <h1 style="margin-left: 1rem;">XI TKJ 3</h1>
+    </div>
+    <img src="tkj3logo.png" alt="Logo" class="logo">
+  </header>
+
+  <nav id="menu">
+    <a href="#" onclick="showSection('beranda')">🏠 Beranda</a>
+    <a href="#" onclick="showSection('jadwal')">📅 Jadwal</a>
+    <a href="#" onclick="showSection('galeri')">📸 Galeri</a>
+  </nav>
+
+  <div class="content">
+    <section id="beranda" class="fade-in" style="text-align: center;">
+    <h2 style="font-size: 2rem; color: #38bdf8; margin-bottom: 1rem;">Selamat Datang di XI TKJ 3</h2>
+   <p style="font-size: 1.1rem; max-width: 700px; margin: 0 auto 2rem; line-height: 1.7;">
+    Kami adalah para pelajar yang sedang mendalami <strong>Teknologi Komputer dan Jaringan</strong>. Mulai dari <em>hardware, OS, hingga <em>networking</em>, semua kami pelajari dengan semangat!
+   </p>
+    <img src="63-633713_computer-icon-vector-png-computer-science-clipart-black-and-white.png" alt="TKJ Illustration" style="width: 200px; margin-bottom: 2rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
+
+    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+    <button onclick="showSection('jadwal')" style="padding: 0.8rem 1.5rem; background: #38bdf8; border: none; color: #0f172a; border-radius: 10px; font-weight: bold; cursor: pointer; transition: background 0.3s;">
+      📅 Lihat Jadwal
+    </button>
+    <button onclick="showSection('galeri')" style="padding: 0.8rem 1.5rem; background: #f1f5f9; border: none; color: #0f172a; border-radius: 10px; font-weight: bold; cursor: pointer; transition: background 0.3s;">
+      📸 Lihat Galeri
+    </button>
+  </div>
+</section>
+
+
+    <section id="jadwal" class="hidden">
+      <label for="hari"><strong>Pilih Hari:</strong></label><br>
+      <select id="hari" onchange="tampilkanJadwal()">
+        <option value="">-- Pilih Hari --</option>
+        <option value="senin">Senin</option>
+        <option value="selasa">Selasa</option>
+        <option value="rabu">Rabu</option>
+        <option value="kamis">Kamis</option>
+        <option value="jumat">Jumat</option>
+      </select>
+      <div id="tampil-jadwal" class="schedule"></div>
+    </section>
+
+    <section id="galeri" class="hidden">
+  <h2 style="color: #38bdf8; margin-bottom: 1rem;">Galeri XI TKJ 3</h2>
+  <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+<section id="galeri" class="hidden">
+  <h2 style="color: #38bdf8; margin-bottom: 1rem;">Galeri XI TKJ 3</h2>
+  <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+    <img src="WhatsApp Image 2025-06-01 at 23.21.16 (1).jpeg">"
+    <img src="WhatsApp Image 2025-06-01 at 23.21.16 (2).jpeg">
+    <img src="WhatsApp Image 2025-06-01 at 23.21.16.jpeg">
+  </div>
+</section>
+
+  </div>
+</section>
+
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.style.display = (menu.style.display === 'block' || menu.style.display === '') ? 'none' : 'block';
+    }
+
+    function showSection(id) {
+  const sections = document.querySelectorAll("section");
+  sections.forEach(sec => sec.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+
+
+    function tampilkanJadwal() {
+      const hari = document.getElementById('hari').value;
+      const jadwalBox = document.getElementById('tampil-jadwal');
+      const jadwal = {
+        senin: [
+          { mapel: "KK", waktu: "08.00 - 11.00" },
+          { mapel: "P5", waktu: "11.00 - 14.30" },
+          { mapel: "Sejarah", waktu: "14.30 - 16.00" }
+        ],
+        selasa: [
+          { mapel: "B. Indo", waktu: "07.00 - 08.30" },
+          { mapel: "PKK", waktu: "08.30 - 11.05" },
+          { mapel: "B. Inggris", waktu: "11.05 - 14.05" },
+          { mapel: "KK", waktu: "14.05 - 15.35" }
+        ],
+        rabu: [
+          { mapel: "KK", waktu: "08.00 - 11.00" },
+          { mapel: "PPKN", waktu: "11.00 - 13.00" },
+          { mapel: "Matematika", waktu: "13.00 - 14.30" },
+          { mapel: "PAI", waktu: "14.30 - 16.00" }
+        ],
+        kamis: [
+          { mapel: "PKK", waktu: "07.00 - 08.30" },
+          { mapel: "KK", waktu: "08.30 - 11.50" },
+          { mapel: "MP2", waktu: "11.50 - 15.35" }
+        ],
+        jumat: [
+          { mapel: "B. Sunda", waktu: "07.00 - 08.30" },
+          { mapel: "BK", waktu: "08.30 - 10.00" },
+          { mapel: "PJOK", waktu: "10.20 - 11.50" },
+          { mapel: "KK", waktu: "12.50 - 15.50" }
+        ]
+      };
+
+      if (jadwal[hari]) {
+        const items = jadwal[hari].map(item => 
+          `<li><span class="subject">${item.mapel}</span><br><span class="time">${item.waktu}</span></li>`
+        ).join('');
+        jadwalBox.innerHTML = `<h2>Jadwal Hari ${hari.charAt(0).toUpperCase() + hari.slice(1)}</h2><ul>${items}</ul>`;
+      } else {
+        jadwalBox.innerHTML = '';
+      }
+    }
+  </script>
+</body>
+</html>
